@@ -1,11 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
+import SwipeInfo from "./Components/SwipeInfo";
+import DisplayRemainingSwipes from "./Components/DisplayRemainingSwipes";
+import Return from "./Components/Return";
 
 export default function App() {
+  const [numOfSwipes, setNumOfSwipes] = useState(null);
+  function calculateDifferenceInDate() {
+    const date = new Date().getDate();
+    const month = new Date().getMonth() + 1;
+    const endOfSemester = { day: 25, month: 5 };
+    if (numOfSwipes) {
+    }
+  }
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {numOfSwipes ? null : <SwipeInfo setSwipes={setNumOfSwipes} />}
+      <DisplayRemainingSwipes swipes={numOfSwipes} />
+      {numOfSwipes ? <Return setSwipes={setNumOfSwipes} /> : null}
     </View>
   );
 }
@@ -13,8 +25,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#6F90AF",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
