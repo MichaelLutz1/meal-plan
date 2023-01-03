@@ -6,7 +6,13 @@ function Return(props) {
     return null;
   }
   console.log("rendered");
-  return <Button title="Return" onPress={() => props.setSwipes(null)} />;
+  return (
+    <Button
+      color={"gold"}
+      title="Return Home"
+      onPress={() => props.setSwipes(null)}
+    />
+  );
 }
 
 export default Return;
