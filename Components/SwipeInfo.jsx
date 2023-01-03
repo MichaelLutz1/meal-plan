@@ -9,7 +9,7 @@ function SwipeInfo(props) {
 
   return (
     <>
-      <Text style={{ color: "gold", fontSize: 25, fontWeight: "bold" }}>
+      <Text style={{ color: "#ffe01c", fontSize: 25, fontWeight: "bold" }}>
         Blue Hen Meal Counter
       </Text>
       <TextInput
@@ -20,9 +20,10 @@ function SwipeInfo(props) {
         value={numOfSwipes}
         onChangeText={(val) => setNumOfSwipes(val)}
         keyboardType="numeric"
+        backgroundColor="beige"
       />
       <Button
-        color={"gold"}
+        color={"#ffe01c"}
         title="Submit"
         onPress={() => {
           props.setSwipes(numOfSwipes);
