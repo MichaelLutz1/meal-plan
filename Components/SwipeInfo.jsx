@@ -2,11 +2,16 @@ import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import React from "react";
 
 function SwipeInfo(props) {
+  if (props.swipes) {
+    return null;
+  }
   const [numOfSwipes, setNumOfSwipes] = React.useState(null);
 
   return (
     <>
-      <Text>Enter the number of meal swipes you have left</Text>
+      <Text style={{ padding: "5%" }}>
+        Enter the number of meal swipes you have left
+      </Text>
       <TextInput
         style={styles.input}
         placeholder="###"
@@ -17,7 +22,7 @@ function SwipeInfo(props) {
       />
       <Button
         title="Submit"
-        style={{ color: "black" }}
+        style={{ color: "black", margin: "5%" }}
         onPress={() => {
           props.setSwipes(numOfSwipes);
         }}
@@ -30,8 +35,8 @@ function SwipeInfo(props) {
 // };
 const styles = StyleSheet.create({
   input: {
-    padding: 8,
-    margin: 4,
+    padding: 10,
+    margin: 15,
     borderColor: "black",
     borderWidth: 3,
     borderRadius: 10,

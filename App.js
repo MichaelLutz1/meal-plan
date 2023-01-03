@@ -6,18 +6,14 @@ import Return from "./Components/Return";
 
 export default function App() {
   const [numOfSwipes, setNumOfSwipes] = useState(null);
-  function calculateDifferenceInDate() {
-    const date = new Date().getDate();
-    const month = new Date().getMonth() + 1;
-    const endOfSemester = { day: 25, month: 5 };
-    if (numOfSwipes) {
-    }
-  }
+
   return (
     <View style={styles.container}>
-      {numOfSwipes ? null : <SwipeInfo setSwipes={setNumOfSwipes} />}
+      <SwipeInfo swipes={numOfSwipes} setSwipes={setNumOfSwipes} />
       <DisplayRemainingSwipes swipes={numOfSwipes} />
-      {numOfSwipes ? <Return setSwipes={setNumOfSwipes} /> : null}
+      {numOfSwipes && (
+        <Return swipes={numOfSwipes} setSwipes={setNumOfSwipes} />
+      )}
     </View>
   );
 }
