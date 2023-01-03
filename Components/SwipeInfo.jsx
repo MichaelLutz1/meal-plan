@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import { StyleSheet, Text, TextInput, Button } from "react-native";
 import React from "react";
 
 function SwipeInfo(props) {
@@ -9,20 +9,21 @@ function SwipeInfo(props) {
 
   return (
     <>
-      <Text style={{ padding: "5%" }}>
-        Enter the number of meal swipes you have left
+      <Text style={{ color: "gold", fontSize: 25, fontWeight: "bold" }}>
+        Blue Hen Meal Counter
       </Text>
       <TextInput
         style={styles.input}
-        placeholder="###"
+        placeholder="Enter your remaining meal swipes "
+        placeholderTextColor={"black"}
         maxLength={3}
         value={numOfSwipes}
         onChangeText={(val) => setNumOfSwipes(val)}
         keyboardType="numeric"
       />
       <Button
+        color={"gold"}
         title="Submit"
-        style={{ color: "black", margin: "5%" }}
         onPress={() => {
           props.setSwipes(numOfSwipes);
         }}
@@ -36,11 +37,12 @@ function SwipeInfo(props) {
 const styles = StyleSheet.create({
   input: {
     padding: 10,
-    margin: 15,
+    margin: 18,
     borderColor: "black",
-    borderWidth: 3,
+    backgroundColor: "cream",
+    borderWidth: 1,
     borderRadius: 10,
-    width: 200,
+    width: 250,
   },
 });
 
