@@ -5,9 +5,10 @@ function DisplayRemainingSwipes(props) {
     return null;
   }
   let display = null;
-  let day = new Date().getDate();
+  let dayOfMonth = new Date().getDate();
   let month = new Date().getMonth() + 1;
-  let date = `${month}-${day}`;
+  let dayOfWeek = new Date().getDay();
+  let date = `${month}-${dayOfMonth}`;
   let endOfSemesterDate = "5-25";
   if (props.mealPlan === "175") {
     const days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -41,15 +42,21 @@ function DisplayRemainingSwipes(props) {
       </>
     );
   } else if (props.mealPlan === "14") {
+    const daysUntilEndOfWeek = 7 - dayOfWeek;
+    let swipesPerDay =
+      Math.round((props.swipes / daysUntilEndOfWeek) * 100) / 100;
     display = (
-      <Button
-        color={"gold"}
-        title="Return Home"
-        onPress={() => {
-          props.setMealPlan(null);
-          props.setSwipes(null);
-        }}
-      />
+      <>
+        <Text>{`With 14 meal swipes per week, you have ${swipesPerDay} swipes left per day`}</Text>
+        <Button
+          color={"gold"}
+          title="Return Home"
+          onPress={() => {
+            props.setMealPlan(null);
+            props.setSwipes(null);
+          }}
+        />
+      </>
     );
   }
   return display;

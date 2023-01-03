@@ -10,7 +10,7 @@ function SwipeInfo(props) {
   return (
     <>
       <Text style={{ color: "#ffe01c", fontSize: 25, fontWeight: "bold" }}>
-        Blue Hen Meal Counter
+        Udel Meal Counter
       </Text>
       <TextInput
         style={styles.input}
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: "cream",
     borderWidth: 1,
     borderRadius: 10,
-    width: 250,
+    width: 240,
   },
 });
 
