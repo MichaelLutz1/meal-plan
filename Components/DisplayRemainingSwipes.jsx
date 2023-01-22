@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Button } from "react-native";
+import { Text, Button, StyleSheet } from "react-native";
 function DisplayRemainingSwipes(props) {
   if (!props.mealPlan || !props.swipes) {
     return null;
@@ -27,10 +27,30 @@ function DisplayRemainingSwipes(props) {
     const endOfSemesterDays = getDayOfYear(endOfSemesterDate);
     const averageNumOfSwipes =
       Math.round((props.swipes / (endOfSemesterDays - currDays)) * 100) / 100;
-
     display = (
       <>
-        <Text>{`With the 175 meal swipes plan, you have ${averageNumOfSwipes} left per day`}</Text>
+        <Text style={styles.text}>
+          With the 175 meal swipes plan, you will have{"\n\n"}
+          <Text
+            style={
+              averageNumOfSwipes > 175 / 110
+                ? { color: "#89ff4a", fontSize: 50 }
+                : { color: "red", fontSize: 50 }
+            }
+          >
+            {averageNumOfSwipes}
+          </Text>
+          {"\n\n"}swipes left per day.
+        </Text>
+        <Text style={styles.text}>
+          This means you are{" "}
+          {averageNumOfSwipes >= 175 / 110 ? (
+            <Text style={{ color: "#89ff4a", fontWeight: "bold" }}>Over</Text>
+          ) : (
+            <Text style={{ color: "red", fontWeight: "bold" }}>Under</Text>
+          )}{" "}
+          the recommended amount of swipes
+        </Text>
         <Button
           color={"gold"}
           title="Return Home"
@@ -45,9 +65,52 @@ function DisplayRemainingSwipes(props) {
     const daysUntilEndOfWeek = 7 - dayOfWeek;
     let swipesPerDay =
       Math.round((props.swipes / daysUntilEndOfWeek) * 100) / 100;
+    let numOverUnder = props.swipes - 2 * daysUntilEndOfWeek;
+    let overUnder;
+    if (numOverUnder > 0) {
+      overUnder = (
+        <Text>
+          with {numOverUnder} extra swipe
+          {numOverUnder === 1 ? null : <Text>s</Text>}
+        </Text>
+      );
+    } else if (numOverUnder < 0) {
+      numOverUnder *= -1;
+      overUnder = (
+        <Text>
+          and used {numOverUnder} too many swipe
+          {numOverUnder === 1 ? null : <Text>s</Text>}
+        </Text>
+      );
+    } else {
+      overUnder = null;
+    }
+
     display = (
       <>
-        <Text>{`With 14 meal swipes per week, you have ${swipesPerDay} swipes left per day`}</Text>
+        <Text style={styles.text}>
+          With 14 meal swipes per week, you will have{"\n\n"}
+          <Text
+            style={
+              swipesPerDay >= 2
+                ? { color: "#89ff4a", fontSize: 50 }
+                : { color: "red", fontSize: 50 }
+            }
+          >
+            {swipesPerDay}
+          </Text>
+          {"\n\n"}
+          swipes left per day {overUnder}.
+        </Text>
+        <Text style={styles.text}>
+          This means you are{" "}
+          {swipesPerDay >= 2 ? (
+            <Text style={{ color: "#89ff4a", fontWeight: "bold" }}>Over</Text>
+          ) : (
+            <Text style={{ color: "red", fontWeight: "bold" }}>Under</Text>
+          )}{" "}
+          the recommended amount of swipes
+        </Text>
         <Button
           color={"gold"}
           title="Return Home"
@@ -61,5 +124,12 @@ function DisplayRemainingSwipes(props) {
   }
   return display;
 }
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 20,
+    width: 300,
+    paddingBottom: 50,
+  },
+});
 
 export default DisplayRemainingSwipes;

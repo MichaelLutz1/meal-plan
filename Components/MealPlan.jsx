@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#0068aa",
     margin: 35,
     marginTop: 50,
-    width: 130,
+    width: 140,
   },
   text: {
-    fontSize: 12,
+    fontSize: 15,
     lineHeight: 21,
     fontWeight: "bold",
     letterSpacing: 0.25,
