@@ -78,7 +78,7 @@ function DisplayRemainingSwipes(props) {
       numOverUnder *= -1;
       overUnder = (
         <Text>
-          and used {numOverUnder} too many swipe
+          since you used {numOverUnder} too many swipe
           {numOverUnder === 1 ? null : <Text>s</Text>}
         </Text>
       );
